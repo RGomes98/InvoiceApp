@@ -7,6 +7,10 @@ body {
   font-family: variable.$league-spartan, system-ui, sans-serif;
 }
 
+.theme-container {
+  min-height: 100vh;
+}
+
 //Themes
 .light {
   background-color: variable.$seasalt;

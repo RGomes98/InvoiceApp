@@ -7,7 +7,7 @@ export default function App() {
   const { activeTheme } = useThemeContext();
 
   return (
-    <div className={activeTheme}>
+    <div className={`theme-container ${activeTheme}`}>
       <Sidebar />
     </div>
   );
