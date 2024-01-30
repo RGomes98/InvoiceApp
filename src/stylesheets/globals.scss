@@ -5,3 +5,12 @@
 body {
   font-family: variable.$league-spartan, system-ui, sans-serif;
 }
+
+//Themes
+.light {
+  background-color: variable.$seasalt;
+}
+
+.dark {
+  background-color: variable.$raisin-black;
+}
