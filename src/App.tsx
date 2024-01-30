@@ -1,8 +1,6 @@
 import { useState, Fragment } from 'react';
 
-import './App.css';
-
-function App() {
+export default function App() {
   const [count, setCount] = useState(0);
 
   return (
@@ -18,5 +16,3 @@ function App() {
     </Fragment>
   );
 }
-
-export default App;
