@@ -1,0 +1,48 @@
+@use 'variables' as variable;
+
+//Typography
+@mixin HeadingLarge {
+  color: variable.$rich-black;
+  font-weight: variable.$bold;
+  font-size: variable.$font-36;
+  line-height: variable.$line-height-32;
+  letter-spacing: variable.$letter-spacing-minus-1;
+}
+
+@mixin HeadingMedium {
+  color: variable.$rich-black;
+  font-weight: variable.$bold;
+  font-size: variable.$font-24;
+  line-height: variable.$line-height-22;
+  letter-spacing: variable.$letter-spacing-minus-0-75;
+}
+
+@mixin HeadingSmall($variant) {
+  color: variable.$rich-black;
+  font-weight: variable.$bold;
+  font-size: variable.$font-15;
+  letter-spacing: variable.$letter-spacing-minus-0-25;
+
+  @if $variant == spaced-out {
+    line-height: variable.$line-height-24;
+  }
+
+  @if $variant == compact {
+    line-height: variable.$line-height-15;
+  }
+}
+
+@mixin BodyFont($variant) {
+  color: variable.$rich-black;
+  font-size: variable.$font-13;
+  font-weight: variable.$medium;
+  letter-spacing: variable.$letter-spacing-minus-0-10;
+
+  @if $variant == spaced-out {
+    line-height: variable.$line-height-18;
+  }
+
+  @if $variant == compact {
+    line-height: variable.$line-height-15;
+  }
+}

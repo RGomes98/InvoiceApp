@@ -3,6 +3,7 @@
 @use 'reset';
 
 body {
+  @include mixin.BodyFont(compact);
   font-family: variable.$league-spartan, system-ui, sans-serif;
 }
 
