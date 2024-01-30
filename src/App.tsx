@@ -1,5 +1,7 @@
 import { useState, Fragment } from 'react';
 
+import '../src/stylesheets/globals.scss';
+
 export default function App() {
   const [count, setCount] = useState(0);
 

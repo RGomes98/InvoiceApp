@@ -1,0 +1,7 @@
+@use 'variables' as variable;
+@use 'mixins' as mixin;
+@use 'reset';
+
+body {
+  font-family: variable.$league-spartan, system-ui, sans-serif;
+}
