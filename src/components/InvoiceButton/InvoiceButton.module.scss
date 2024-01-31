@@ -1,0 +1,49 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.newInvoiceButton {
+  gap: 1rem;
+  display: flex;
+  cursor: pointer;
+  border: transparent;
+  align-items: center;
+  border-radius: 1.5rem;
+  padding-block: 0.5rem;
+  padding-inline: 0.5rem 1rem;
+  background-color: variable.$electric-indigo;
+  @include mixin.HeadingSmall(compact);
+  color: variable.$white;
+}
+
+.newInvoiceButton:hover {
+  background-color: variable.$tropical-indigo;
+}
+
+.text:nth-of-type(2) {
+  display: none;
+}
+
+.iconWrapper {
+  width: 2rem;
+  height: 2rem;
+  display: flex;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  background-color: variable.$white;
+}
+
+.plusIcon {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+@media (width <= variable.$mobile) {
+  .text:nth-of-type(1) {
+    display: none;
+  }
+
+  .text:nth-of-type(2) {
+    display: initial;
+  }
+}

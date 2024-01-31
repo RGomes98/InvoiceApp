@@ -1,0 +1,45 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.container {
+  display: flex;
+  gap: 4.125rem;
+  margin: 0 auto;
+  max-width: 15rem;
+  margin-top: 4.75rem;
+  flex-direction: column;
+}
+
+.textWrapper {
+  gap: 1.438rem;
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+}
+
+.heading {
+  font-weight: variable.$bold;
+  font-size: variable.$font-24;
+  letter-spacing: variable.$letter-spacing-minus-0-75;
+}
+
+.text {
+  @include mixin.BodyFont(compact);
+}
+
+.variant {
+  white-space: nowrap;
+  font-weight: variable.$bold;
+}
+
+//Dark Theme
+
+.dark {
+  .heading {
+    color: variable.$white;
+  }
+
+  .text {
+    color: variable.$lavender;
+  }
+}

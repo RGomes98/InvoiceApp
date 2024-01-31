@@ -1,0 +1,68 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.headingWrapper {
+  display: flex;
+  gap: 0.375rem;
+  flex-direction: column;
+}
+
+.heading {
+  @include mixin.HeadingLarge;
+  line-height: initial;
+  letter-spacing: variable.$letter-spacing-minus-1-15;
+}
+
+.count {
+  @include mixin.BodyFont(compact);
+  color: variable.$cool-gray;
+}
+
+.count:nth-of-type(2) {
+  display: none;
+}
+
+.actionsWrapper {
+  gap: 2.5rem;
+  display: flex;
+  align-items: center;
+}
+
+//Dark Theme
+.dark {
+  .heading {
+    color: variable.$white;
+  }
+
+  .count {
+    color: variable.$lavender;
+  }
+}
+
+@media (width <= variable.$mobile) {
+  .container {
+    align-items: center;
+  }
+
+  .heading {
+    font-size: variable.$font-24;
+  }
+
+  .actionsWrapper {
+    gap: 1.125rem;
+  }
+
+  .count:nth-of-type(1) {
+    display: none;
+  }
+
+  .count:nth-of-type(2) {
+    display: initial;
+  }
+}
