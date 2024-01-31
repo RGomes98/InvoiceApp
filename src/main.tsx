@@ -1,3 +1,4 @@
+import { InvoiceContextProvider } from './context/InvoiceContext.tsx';
 import { ThemeContextProvider } from './context/ThemeContext.tsx';
 
 import ReactDOM from 'react-dom/client';
@@ -6,8 +7,10 @@ import React from 'react';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <ThemeContextProvider>
-      <App />
-    </ThemeContextProvider>
+    <InvoiceContextProvider>
+      <ThemeContextProvider>
+        <App />
+      </ThemeContextProvider>
+    </InvoiceContextProvider>
   </React.StrictMode>
 );
