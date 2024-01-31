@@ -1,0 +1,13 @@
+@use 'colors' as color;
+
+$statuses-colors: (
+  pending: color.$princeton-orange,
+  paid: color.$emerald,
+  draft: color.$jet,
+);
+
+$statuses-transparent-colors: (
+  pending: color.$transparent-princeton-orange-5,
+  paid: color.$transparent-emerald-5,
+  draft: color.$transparent-jet-5,
+);
