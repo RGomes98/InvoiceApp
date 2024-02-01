@@ -15,6 +15,7 @@ type InvoiceContext = {
 };
 
 export const InvoiceContext = createContext<InvoiceContext | null>(null);
+
 const currentInvoices = validateInvoices() || null;
 
 export const InvoiceContextProvider = ({ children }: { children: ReactNode }) => {
