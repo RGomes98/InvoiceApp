@@ -16,8 +16,8 @@ export const addressSchema = z.object({
 
 export const invoiceSchema = z.object({
   id: z.string(),
-  createdAt: z.date(),
-  paymentDue: z.date(),
+  createdAt: z.coerce.date(),
+  paymentDue: z.coerce.date(),
   description: z.string(),
   paymentTerms: z.number(),
   clientName: z.string(),
@@ -29,6 +29,9 @@ export const invoiceSchema = z.object({
   total: z.number(),
 });
 
+export const invoicesSchema = z.array(invoiceSchema);
+
+export type Invoices = z.infer<typeof invoicesSchema>;
 export type Invoice = z.infer<typeof invoiceSchema>;
 export type Address = z.infer<typeof addressSchema>;
 export type Item = z.infer<typeof itemSchema>;
