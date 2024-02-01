@@ -1,6 +1,6 @@
 import type { ReactNode, SetStateAction, Dispatch } from 'react';
 import type { Theme } from '../lib/schemas/theme.schema';
-import { validateTheme } from '../utils/validateTheme';
+import { validateTheme } from '../helpers/validateTheme';
 import { createContext, useState } from 'react';
 
 type ThemeContext = {

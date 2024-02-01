@@ -1,8 +1,8 @@
 import { useInvoiceContext } from './useInvoiceContext';
-import { fetchData } from '../utils/fetchData';
+import { fetchData } from '../helpers/fetchData';
 import { useEffect } from 'react';
 
-export const useInvoice = () => {
+export const useInvoices = () => {
   const { invoices, setInvoices } = useInvoiceContext();
 
   useEffect(() => {

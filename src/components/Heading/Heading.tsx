@@ -1,14 +1,14 @@
 import { getActiveThemeStyles } from '../../utils/getActiveThemeStyles';
 import { InvoiceButton } from '../InvoiceButton/InvoiceButton';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { useInvoice } from '../../hooks/useInvoices';
+import { useInvoices } from '../../hooks/useInvoices';
 import { Dropdown } from '../Dropdown/Dropdown';
 
 import styles from './Heading.module.scss';
 
 export const Heading = () => {
   const { activeTheme } = useThemeContext();
-  const { invoices } = useInvoice();
+  const { invoices } = useInvoices();
 
   return (
     <div className={`${styles.container} ${getActiveThemeStyles(styles[activeTheme])}`}>
