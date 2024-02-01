@@ -2,11 +2,12 @@
 @use '../../stylesheets/mixins' as mixin;
 
 .sidebar {
-  width: 100%;
-  display: flex;
+  left: 0;
   height: 100vh;
+  display: flex;
+  width: 6.25rem;
+  position: fixed;
   overflow: hidden;
-  max-width: 6.25rem;
   flex-direction: column;
   background-color: variable.$jet;
   border-radius: 0 1.25rem 1.25rem 0;
@@ -76,8 +77,10 @@
 
 @media (width <= variable.$tablet) {
   .sidebar {
+    top: 0;
+    width: 100%;
     max-height: 5rem;
-    max-width: initial;
+    position: initial;
     border-radius: initial;
     flex-direction: initial;
   }

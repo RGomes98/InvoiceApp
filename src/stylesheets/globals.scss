@@ -9,18 +9,18 @@ body {
 
 .theme-container {
   display: flex;
-  min-height: 100vh;
+  min-height: 100svh;
 }
 
 main {
   gap: 4rem;
   width: 100%;
   display: flex;
+  margin-inline: auto;
   max-width: 45.625rem;
   margin-top: 4.875rem;
+  padding-bottom: 6rem;
   flex-direction: column;
-  padding-bottom: 6.563rem;
-  margin-inline: 15.75rem 3rem;
 }
 
 //Themes
