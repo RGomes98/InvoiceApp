@@ -1,3 +1,4 @@
+import { getActiveThemeStyles } from '../../utils/getActiveThemeStyles';
 import { InvoiceButton } from '../InvoiceButton/InvoiceButton';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { useInvoice } from '../../hooks/useInvoices';
@@ -10,7 +11,7 @@ export const Heading = () => {
   const { invoices } = useInvoice();
 
   return (
-    <div className={`${styles.container} ${styles[activeTheme]}`}>
+    <div className={`${styles.container} ${getActiveThemeStyles(styles[activeTheme])}`}>
       <div className={styles.headingWrapper}>
         <h1 className={styles.heading}>Invoices</h1>
         <span className={styles.count}>

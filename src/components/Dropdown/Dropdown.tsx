@@ -1,3 +1,4 @@
+import { getActiveThemeStyles } from '../../utils/getActiveThemeStyles';
 import { useInvoiceContext } from '../../hooks/useInvoiceContext';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { FilterOptions } from '../../context/InvoiceContext';
@@ -20,7 +21,7 @@ export const Dropdown = () => {
   };
 
   return (
-    <div className={`${styles.dropdownWrapper} ${styles[activeTheme]}`}>
+    <div className={`${styles.dropdownWrapper} ${getActiveThemeStyles(styles[activeTheme])}`}>
       <button className={styles.dropdownButton} onClick={handleDropdownToggle}>
         <span className={styles.buttonText}>Filter by status</span>{' '}
         <span className={styles.buttonText}>Filter</span>{' '}

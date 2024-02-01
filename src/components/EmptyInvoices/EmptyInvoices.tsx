@@ -1,3 +1,4 @@
+import { getActiveThemeStyles } from '../../utils/getActiveThemeStyles';
 import { useThemeContext } from '../../hooks/useThemeContext';
 
 import EmptyLogo from '../../assets/svgs/illustration-empty.svg?react';
@@ -7,7 +8,7 @@ export const EmptyInvoices = () => {
   const { activeTheme } = useThemeContext();
 
   return (
-    <div className={`${styles.container} ${styles[activeTheme]}`}>
+    <div className={`${styles.container} ${getActiveThemeStyles(styles[activeTheme])}`}>
       <EmptyLogo />
       <div className={styles.textWrapper}>
         <span className={styles.heading}>There is nothing here</span>

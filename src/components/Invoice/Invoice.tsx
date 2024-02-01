@@ -1,4 +1,5 @@
 import type { Invoice as InvoiceType } from '../../lib/schemas/invoice.schema';
+import { getActiveThemeStyles } from '../../utils/getActiveThemeStyles';
 import { useThemeContext } from '../../hooks/useThemeContext';
 import { formatCurrency } from '../../utils/FormatCurrency';
 import { formatDate } from '../../utils/formatDate';
@@ -12,7 +13,7 @@ export const Invoice = ({ id, paymentDue, clientName, total, status }: Invoice) 
   const { activeTheme } = useThemeContext();
 
   return (
-    <li className={`${styles.container} ${styles[activeTheme]}`}>
+    <li className={`${styles.container} ${getActiveThemeStyles(styles[activeTheme])}`}>
       <button className={styles.button}>
         <div className={styles.clientWrapper}>
           <span className={styles.id}>
