@@ -204,7 +204,7 @@
     "description": "Logo Re-design",
     "paymentTerms": 7,
     "clientName": "Anita Wainwright",
-    "clientEmail": "",
+    "clientEmail": "anita@ld.com",
     "status": "draft",
     "senderAddress": {
       "street": "19 Union Terrace",
@@ -213,10 +213,10 @@
       "country": "United Kingdom"
     },
     "clientAddress": {
-      "street": "",
-      "city": "",
-      "postCode": "",
-      "country": ""
+      "street": "46 Abbey Row",
+      "city": "Cambridge",
+      "postCode": "CB5 6EG",
+      "country": "United Kingdom"
     },
     "items": [
       {
