@@ -3,6 +3,7 @@
 
 .sidebar {
   left: 0;
+  z-index: 15;
   height: 100vh;
   display: flex;
   width: 6.25rem;
@@ -116,7 +117,6 @@
 
 @media (width <= variable.$mobile) {
   .sidebar {
-    z-index: 5;
     max-height: 4.5rem;
   }
 
