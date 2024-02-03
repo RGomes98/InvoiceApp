@@ -13,14 +13,14 @@ body {
 }
 
 main {
-  gap: 4rem;
   width: 100%;
   display: flex;
+  overflow-x: clip;
+  position: relative;
   margin-inline: auto;
   max-width: 45.625rem;
   margin-top: 4.875rem;
   padding-bottom: 6rem;
-  flex-direction: column;
 }
 
 //Themes
@@ -39,9 +39,8 @@ main {
   }
 
   main {
-    gap: 3.438rem;
     max-width: unset;
-    margin-top: 3.875rem;
+    margin-top: 8.875rem;
     padding-inline: 3rem;
     margin-inline: initial;
   }
@@ -50,7 +49,7 @@ main {
 @media (width <= variable.$mobile) {
   main {
     gap: 2rem;
-    margin-top: 2rem;
+    margin-top: 6.5rem;
     padding-inline: 1.5rem;
   }
 }

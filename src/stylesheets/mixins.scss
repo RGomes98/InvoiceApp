@@ -27,6 +27,10 @@
     line-height: variable.$line-height-24;
   }
 
+  @if $variant == balanced {
+    line-height: variable.$line-height-20;
+  }
+
   @if $variant == compact {
     line-height: variable.$line-height-15;
   }

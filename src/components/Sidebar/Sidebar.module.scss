@@ -80,7 +80,6 @@
     top: 0;
     width: 100%;
     max-height: 5rem;
-    position: initial;
     border-radius: initial;
     flex-direction: initial;
   }
@@ -117,6 +116,7 @@
 
 @media (width <= variable.$mobile) {
   .sidebar {
+    z-index: 5;
     max-height: 4.5rem;
   }
 
