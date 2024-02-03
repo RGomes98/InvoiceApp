@@ -1,0 +1,60 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.actionItem {
+  gap: 0.5rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+}
+
+.actionItem button {
+  cursor: pointer;
+  border-radius: 1.5rem;
+  padding-inline: 1.5rem;
+  padding-block: 1.125rem 0.938rem;
+}
+
+.editButton {
+  border: transparent;
+  background-color: variable.$magnolia;
+  @include mixin.HeadingSmall(compact);
+  color: variable.$glaucous;
+}
+
+.editButton:hover {
+  background-color: variable.$lavender;
+}
+
+.deleteButton {
+  border: transparent;
+  background-color: variable.$indian-red;
+  @include mixin.HeadingSmall(compact);
+  color: variable.$white;
+}
+
+.deleteButton:hover {
+  background-color: variable.$salmon-pink;
+}
+
+.paidButton {
+  border: transparent;
+  background-color: variable.$electric-indigo;
+  @include mixin.HeadingSmall(compact);
+  color: variable.$white;
+}
+
+.paidButton:hover {
+  background-color: variable.$tropical-indigo;
+}
+
+//Dark Mode
+.dark {
+  :nth-child(1) {
+    background-color: variable.$delft-blue;
+
+    &:hover {
+      background-color: variable.$white;
+    }
+  }
+}

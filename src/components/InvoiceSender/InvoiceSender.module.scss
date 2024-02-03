@@ -1,0 +1,64 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.senderList {
+  display: flex;
+  list-style: none;
+  justify-content: space-between;
+}
+
+.senderItem {
+}
+
+.senderItem:first-child {
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.senderItem:last-child {
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+  @include mixin.BodyFont(spaced-out);
+  color: variable.$glaucous;
+}
+
+.invoiceId {
+  @include mixin.HeadingSmall(spaced-out);
+}
+
+.variant {
+  color: variable.$cool-gray;
+}
+
+.invoiceDescription {
+  @include mixin.BodyFont(compact);
+  color: variable.$glaucous;
+}
+
+.senderAddress {
+}
+
+@media (width <= variable.$mobile) {
+  .senderList {
+    gap: 2rem;
+    flex-direction: column;
+  }
+
+  .senderItem:last-child {
+    text-align: initial;
+  }
+}
+
+//Dark Mode
+.dark {
+  .invoiceId {
+    color: variable.$white;
+  }
+
+  .invoiceDescription,
+  .senderItem:last-child {
+    color: variable.$lavender;
+  }
+}

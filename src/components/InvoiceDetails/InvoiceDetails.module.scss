@@ -1,0 +1,97 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.container {
+  inset: 0;
+  z-index: 5;
+  gap: 1.5rem;
+  display: flex;
+  position: absolute;
+  align-items: center;
+  flex-direction: column;
+  padding-inline: inherit;
+  transform: translateX(105%);
+  transition: transform 500ms;
+  animation: showInvoice 500ms;
+  background-color: variable.$seasalt;
+}
+
+@keyframes showInvoice {
+  from {
+    transform: translateX(105%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.showInvoice {
+  transform: translateX(0);
+}
+
+.detailsWrapper {
+  width: 100%;
+  gap: 1.25rem;
+  display: flex;
+  padding-block: 3rem;
+  padding-inline: 3rem;
+  border-radius: 0.5rem;
+  flex-direction: column;
+  background-color: variable.$white;
+}
+
+.actionsButtons {
+  display: none;
+}
+
+//Dark Mode
+.dark {
+  background-color: variable.$raisin-black;
+
+  .detailsWrapper,
+  .actionsButtons {
+    background-color: variable.$space-cadet;
+  }
+}
+
+@media (width <= variable.$tablet) {
+  .container {
+    top: 5rem;
+    position: fixed;
+    overflow-y: auto;
+    min-height: 100vh;
+    min-height: initial;
+    padding-block: 2rem 2rem;
+  }
+
+  .detailsWrapper {
+    padding-block: 2rem;
+    padding-inline: 2rem;
+  }
+}
+
+@media (width <= variable.$mobile) {
+  .container {
+    gap: 1rem;
+    top: 4.5rem;
+    padding-block: 3rem 0;
+  }
+
+  .detailsWrapper {
+    gap: 2rem;
+    margin-bottom: 2rem;
+    padding-block: 1.5rem;
+    padding-inline: 1.5rem;
+  }
+
+  .actionsButtons {
+    display: flex;
+    margin-top: auto;
+    align-items: center;
+    margin-inline: -3rem;
+    padding-block: 1.25rem;
+    justify-content: center;
+    width: calc(100% + 3rem);
+    background-color: variable.$white;
+  }
+}

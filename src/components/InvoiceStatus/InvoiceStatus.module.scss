@@ -1,0 +1,78 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.container {
+  min-width: 6.5rem;
+  margin-left: 1.25rem;
+}
+
+.statusWrapper {
+  gap: 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border-radius: 0.375rem;
+  justify-content: center;
+  padding-block: 0.875rem 0.688rem;
+}
+
+.dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 50%;
+}
+
+.status {
+  text-transform: capitalize;
+  @include mixin.HeadingSmall(compact);
+}
+
+@each $status, $color in variable.$statuses-colors {
+  .color-#{$status} {
+    color: $color;
+  }
+
+  .dark {
+    @if $status == draft {
+      .color-#{$status} {
+        color: variable.$lavender;
+      }
+    }
+  }
+}
+
+@each $status, $color in variable.$statuses-colors {
+  .solid-#{$status} {
+    background-color: $color;
+  }
+
+  .dark {
+    @if $status == draft {
+      .solid-#{$status} {
+        background-color: variable.$lavender;
+      }
+    }
+  }
+}
+
+@each $status, $color in variable.$statuses-transparent-colors {
+  .transparent-#{$status} {
+    background-color: $color;
+  }
+
+  .dark {
+    @if $status == draft {
+      .transparent-#{$status} {
+        background-color: variable.$transparent-lavender-5;
+      }
+    }
+  }
+}
+
+@media (width <= variable.$mobile) {
+  .container {
+    margin-left: unset;
+    max-width: 6.563rem;
+    margin-left: 1.25rem;
+  }
+}

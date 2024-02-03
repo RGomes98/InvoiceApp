@@ -1,0 +1,155 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.productWrapper {
+  margin-top: 1.5rem;
+}
+
+.productList {
+  display: grid;
+  overflow-y: auto;
+  list-style: none;
+  max-height: 12rem;
+  padding-inline: 2rem;
+  scrollbar-gutter: stable;
+  padding-block: 2rem 2.5rem;
+  border-radius: 0.5rem 0.5rem 0 0;
+  background-color: variable.$magnolia;
+  grid-template-columns: 0.4fr 0.2fr 0.2fr 0.2fr;
+}
+
+.productItem {
+  gap: 2rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.productItem:nth-child(2) {
+  margin-left: auto;
+  width: fit-content;
+  text-align: center;
+}
+
+.productHeading {
+  @include mixin.BodyFont(spaced-out);
+  color: variable.$glaucous;
+}
+
+.productDetails {
+  gap: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.productText,
+.mobileQuantity {
+  @include mixin.HeadingSmall(compact);
+}
+
+.mobileQuantity {
+  display: none;
+  color: variable.$glaucous;
+}
+
+.productItem:nth-child(2) .productText,
+.productItem:nth-child(3) .productText {
+  color: variable.$glaucous;
+}
+
+.productItem:not(:nth-child(1), :nth-child(2)) {
+  align-items: flex-end;
+}
+
+.totalWrapper {
+  display: flex;
+  align-items: center;
+  padding-inline: 2rem;
+  justify-content: space-between;
+  background-color: variable.$jet;
+  border-radius: 0 0 0.5rem 0.5rem;
+  padding-block: 1.688rem 1.313rem;
+}
+
+.totalHeading:nth-of-type(2) {
+  display: none;
+}
+
+.totalHeading {
+  @include mixin.BodyFont(spaced-out);
+  color: variable.$white;
+}
+
+.totalValue {
+  color: variable.$white;
+  font-weight: variable.$bold;
+  font-size: variable.$font-24;
+  line-height: variable.$line-height-32;
+  letter-spacing: variable.$letter-spacing-minus-0-50;
+}
+
+@media (width <= variable.$mobile) {
+  .productWrapper {
+    margin-top: 0.375rem;
+  }
+
+  .productList {
+    padding-inline: 1rem;
+    padding-block: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .productHeading,
+  .productItem:nth-child(2),
+  .productItem:nth-child(3) {
+    display: none;
+  }
+
+  .productText {
+    flex: 1;
+    display: flex;
+    align-items: center;
+  }
+
+  .mobileQuantity {
+    display: initial;
+  }
+
+  .totalWrapper {
+    padding-block: 2rem;
+    padding-inline: 1.5rem;
+  }
+
+  .totalHeading:nth-of-type(1) {
+    display: none;
+  }
+
+  .totalHeading:nth-of-type(2) {
+    display: initial;
+  }
+}
+
+//Dark Theme
+.dark {
+  .productList {
+    background-color: variable.$delft-blue;
+  }
+
+  .productHeading,
+  .productItem:nth-child(2) .productText,
+  .productItem:nth-child(3) .productText {
+    color: variable.$lavender;
+  }
+
+  .productItem:nth-child(1) .productText,
+  .productItem:nth-child(4) .productText {
+    color: variable.$white;
+  }
+
+  .totalWrapper {
+    background-color: variable.$rich-black;
+  }
+
+  .mobileQuantity {
+    color: variable.$cool-gray;
+  }
+}

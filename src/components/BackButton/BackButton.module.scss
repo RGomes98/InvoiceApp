@@ -1,0 +1,29 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.backButton {
+  gap: 1.5rem;
+  display: flex;
+  cursor: pointer;
+  border: transparent;
+  margin-bottom: 0.5rem;
+  align-self: flex-start;
+  background-color: transparent;
+  @include mixin.HeadingSmall(compact);
+}
+
+.backButton:hover {
+  color: variable.$glaucous;
+}
+
+.arrowIcon {
+}
+
+//Dark Mode
+.dark {
+  color: variable.$white;
+
+  &:hover {
+    color: variable.$cool-gray;
+  }
+}

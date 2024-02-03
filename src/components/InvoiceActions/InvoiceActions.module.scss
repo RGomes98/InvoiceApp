@@ -1,0 +1,54 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.actionList {
+  width: 100%;
+  display: flex;
+  list-style: none;
+  align-items: center;
+  padding-inline: 2rem;
+  border-radius: 0.5rem;
+  padding-block: 1.25rem;
+  justify-content: space-between;
+  background-color: variable.$white;
+}
+
+.actionItem {
+  display: flex;
+  height: 2.5rem;
+  align-items: center;
+}
+
+.statusHeading {
+  @include mixin.BodyFont(compact);
+  color: variable.$french-gray;
+}
+
+.status {
+}
+
+//Dark Mode
+.dark {
+  background-color: variable.$space-cadet;
+
+  .statusHeading {
+    color: variable.$lavender;
+  }
+}
+
+@media (width <= variable.$mobile) {
+  .actionList {
+    margin-top: 1rem;
+    padding-inline: 1.5rem;
+    padding-block: 1.5rem 1.688rem;
+  }
+
+  .actionItem {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .actionsButtons {
+    display: none;
+  }
+}
