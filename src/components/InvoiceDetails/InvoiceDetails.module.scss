@@ -6,8 +6,11 @@
   z-index: 5;
   gap: 1.5rem;
   display: flex;
-  position: absolute;
+  position: fixed;
   align-items: center;
+  margin-inline: auto;
+  max-width: 45.625rem;
+  padding-top: inherit;
   flex-direction: column;
   padding-inline: inherit;
   transform: translateX(105%);
@@ -57,9 +60,9 @@
 @media (width <= variable.$tablet) {
   .container {
     top: 5rem;
-    position: fixed;
     overflow-y: auto;
     min-height: 100vh;
+    max-width: initial;
     min-height: initial;
     padding-block: 2rem 2rem;
   }
@@ -74,7 +77,7 @@
   .container {
     gap: 1rem;
     top: 4.5rem;
-    padding-block: 3rem 0;
+    padding-block: 2rem 0;
   }
 
   .detailsWrapper {

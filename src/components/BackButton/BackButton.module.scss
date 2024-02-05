@@ -27,3 +27,9 @@
     color: variable.$cool-gray;
   }
 }
+
+@media (width <= variable.$mobile) {
+  .backButton {
+    margin-bottom: initial;
+  }
+}

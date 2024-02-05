@@ -17,10 +17,12 @@ main {
   display: flex;
   overflow-x: clip;
   position: relative;
+  clip-path: inset(0);
   margin-inline: auto;
-  max-width: 45.625rem;
-  margin-top: 4.875rem;
   padding-bottom: 6rem;
+  max-width: 45.625rem;
+  padding-top: 4.875rem;
+  backface-visibility: hidden;
 }
 
 //Themes
@@ -39,17 +41,19 @@ main {
   }
 
   main {
+    clip-path: unset;
     max-width: unset;
-    margin-top: 8.875rem;
     padding-inline: 3rem;
+    padding-top: 8.875rem;
     margin-inline: initial;
+    backface-visibility: unset;
   }
 }
 
 @media (width <= variable.$mobile) {
   main {
     gap: 2rem;
-    margin-top: 6.5rem;
+    padding-top: 6.5rem;
     padding-inline: 1.5rem;
   }
 }
