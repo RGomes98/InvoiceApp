@@ -1,4 +1,3 @@
-export const formatCurrency = (number?: number) => {
-  if (!number) return;
+export const formatCurrency = (number: number) => {
   return new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'GBP' }).format(number);
 };
