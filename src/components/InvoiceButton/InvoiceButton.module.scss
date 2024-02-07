@@ -11,6 +11,7 @@
   padding-block: 0.5rem;
   padding-inline: 0.5rem 1rem;
   background-color: variable.$electric-indigo;
+  transition: background-color variable.$ease-200ms;
   @include mixin.HeadingSmall(compact);
   color: variable.$white;
 }

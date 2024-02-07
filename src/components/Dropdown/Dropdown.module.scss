@@ -21,6 +21,7 @@
 
 .arrowIcon {
   width: 0.75rem;
+  transition: transform variable.$ease-200ms;
 }
 
 .buttonText:nth-child(2) {
@@ -43,6 +44,8 @@
   background-color: variable.$white;
 }
 
+@include mixin.FadeInAnimation(statusList, variable.$ease-200ms);
+
 .statusItem {
   display: flex;
   align-items: center;
@@ -60,7 +63,7 @@
 
 .button:hover .checkbox::after {
   border-radius: 0.125rem;
-  border: 1px solid variable.$electric-indigo;
+  border-color: variable.$electric-indigo;
 }
 
 .checkbox {
@@ -82,10 +85,12 @@
   width: 100%;
   height: 100%;
   position: absolute;
+  border-radius: 0.125rem;
+  border: 1px solid transparent;
+  transition: border-color variable.$ease-200ms;
 }
 
 .checkbox:checked:after {
-  border-radius: 0.125rem;
   background-position: center;
   background-repeat: no-repeat;
   background-color: variable.$electric-indigo;

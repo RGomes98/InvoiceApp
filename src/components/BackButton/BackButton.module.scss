@@ -10,6 +10,7 @@
   align-self: flex-start;
   background-color: transparent;
   @include mixin.HeadingSmall(compact);
+  transition: color variable.$ease-200ms;
 }
 
 .backButton:hover {

@@ -48,6 +48,12 @@
   background-color: variable.$tropical-indigo;
 }
 
+.editButton,
+.deleteButton,
+.paidButton {
+  transition: background-color variable.$ease-200ms;
+}
+
 //Dark Mode
 .dark {
   :nth-child(1) {

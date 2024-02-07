@@ -50,3 +50,19 @@
     line-height: variable.$line-height-15;
   }
 }
+
+//Animations
+@mixin FadeInAnimation($container, $animationSettings) {
+  .#{$container} {
+    animation: fadeIn $animationSettings;
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}

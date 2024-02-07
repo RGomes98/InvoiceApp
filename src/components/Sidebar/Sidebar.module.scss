@@ -57,6 +57,8 @@
   height: 1.25rem;
 }
 
+@include mixin.FadeInAnimation(themeIcon, variable.$ease-200ms);
+
 .profileWrapper {
   display: flex;
   align-items: center;
