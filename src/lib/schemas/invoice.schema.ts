@@ -1,6 +1,9 @@
 import { getDaysDifference } from '../../utils/getDaysDifference';
 import { z } from 'zod';
 
+const postCodeRegExp =
+  /^[A-Za-z]{1,2}\d[A-Za-z\d]? \d[A-Za-z]{2}$|^\d{5}$|^[A-Za-z]{1,2}\d{1,2} \d[A-Za-z]{2}$/;
+
 export const itemSchema = z.object({
   name: z.string().trim().min(1),
   quantity: z.number().positive().int(),
@@ -11,11 +14,7 @@ export const itemSchema = z.object({
 export const addressSchema = z.object({
   street: z.string().trim().min(1),
   city: z.string().trim().min(1),
-  postCode: z
-    .string()
-    .regex(
-      new RegExp(/^[A-Za-z]{1,2}\d[A-Za-z\d]? \d[A-Za-z]{2}$|^\d{5}$|^[A-Za-z]{1,2}\d{1,2} \d[A-Za-z]{2}$/)
-    ),
+  postCode: z.string().regex(new RegExp(postCodeRegExp)),
   country: z.string().trim().min(1),
 });
 
