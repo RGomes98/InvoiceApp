@@ -8,11 +8,9 @@ type UpdateInvoice = Omit<CreateInvoice, 'status'>;
 export const useInvoiceActions = () => {
   const { invoices, setInvoices } = useInvoiceContext();
 
-  const invoicesToMutate = structuredClone(invoices);
-
-  const updateInvoices = (invoices: Invoice[]) => {
-    setInvoices(invoices);
-    localStorage.setItem('invoices', JSON.stringify(invoices));
+  const updateInvoices = (invoicesToUpdate: Invoice[]) => {
+    setInvoices(invoicesToUpdate);
+    localStorage.setItem('invoices', JSON.stringify(invoicesToUpdate));
   };
 
   const generateInvoiceId = () => crypto.randomUUID().slice(0, 6).toUpperCase();
@@ -26,7 +24,7 @@ export const useInvoiceActions = () => {
   };
 
   const createInvoice = (invoice: CreateInvoice) => {
-    if (!invoicesToMutate) return;
+    if (!invoices) return;
     const currentDate = new Date();
 
     const newInvoice = {
@@ -37,12 +35,12 @@ export const useInvoiceActions = () => {
       paymentTerms: getInvoicePaymentTerms(currentDate, invoice.paymentDue),
     };
 
-    updateInvoices([...invoicesToMutate, newInvoice]);
+    updateInvoices([...invoices, newInvoice]);
   };
 
   const updateInvoice = (invoiceId: string, updatedInvoice: UpdateInvoice) => {
-    const invoiceToUpdate = invoicesToMutate?.find(({ id }) => id === invoiceId);
-    if (!invoicesToMutate || !invoiceToUpdate) return;
+    const invoiceToUpdate = invoices?.find(({ id }) => id === invoiceId);
+    if (!invoices || !invoiceToUpdate) return;
 
     const invoice = {
       ...updatedInvoice,
@@ -53,20 +51,20 @@ export const useInvoiceActions = () => {
       paymentTerms: getInvoicePaymentTerms(invoiceToUpdate.createdAt, updatedInvoice.paymentDue),
     };
 
-    updateInvoices([...invoicesToMutate.filter(({ id }) => id !== invoiceId), invoice]);
+    updateInvoices([...invoices.filter(({ id }) => id !== invoiceId), invoice]);
   };
 
   const deleteInvoice = (invoiceId: string) => {
-    if (!invoicesToMutate) return;
-    updateInvoices([...invoicesToMutate.filter(({ id }) => id !== invoiceId)]);
+    if (!invoices) return;
+    updateInvoices([...invoices.filter(({ id }) => id !== invoiceId)]);
   };
 
   const markInvoiceAsPaid = (invoiceId: string) => {
-    const invoiceToUpdate = invoicesToMutate?.find(({ id }) => id === invoiceId);
-    if (!invoicesToMutate || !invoiceToUpdate) return;
+    const invoiceToUpdate = invoices?.find(({ id }) => id === invoiceId);
+    if (!invoices || !invoiceToUpdate) return;
 
     invoiceToUpdate.status = 'paid';
-    updateInvoices([...invoicesToMutate.filter(({ id }) => id !== invoiceId), invoiceToUpdate]);
+    updateInvoices([...invoices.filter(({ id }) => id !== invoiceId), invoiceToUpdate]);
   };
 
   return { createInvoice, updateInvoice, deleteInvoice, markInvoiceAsPaid };
