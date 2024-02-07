@@ -1,12 +1,14 @@
 import { getActiveThemeStyles } from '../../utils/getActiveThemeStyles';
-import { ActionsButtons } from '../ActionsButtons/ActionsButtons';
 import type { Invoice } from '../../lib/schemas/invoice.schema';
 import { InvoiceStatus } from '../InvoiceStatus/InvoiceStatus';
 import { useThemeContext } from '../../hooks/useThemeContext';
+import type { ReactNode } from 'react';
 
 import styles from './InvoiceActions.module.scss';
 
-export const InvoiceActions = ({ invoiceStatus }: { invoiceStatus: Invoice['status'] }) => {
+type InvoiceActions = { children?: ReactNode; invoiceStatus: Invoice['status'] };
+
+export const InvoiceActions = ({ children, invoiceStatus }: InvoiceActions) => {
   const { activeTheme } = useThemeContext();
 
   return (
@@ -15,9 +17,7 @@ export const InvoiceActions = ({ invoiceStatus }: { invoiceStatus: Invoice['stat
         <span className={styles.statusHeading}>Status</span>
         <InvoiceStatus status={invoiceStatus} />
       </li>
-      <div className={styles.actionsButtons}>
-        <ActionsButtons />
-      </div>
+      <li className={styles.actionsButtons}>{children}</li>
     </ul>
   );
 };
