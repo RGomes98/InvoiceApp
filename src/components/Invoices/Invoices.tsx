@@ -12,18 +12,19 @@ export const Invoices = () => {
 
   if (!invoices) return null;
   const filteredInvoices = invoices?.filter(({ status }) => status === (activeFilter || status));
+  const isInvoiceListEmpty = invoices.length === 0;
 
   return (
     <div className={styles.container}>
       <Heading />
-      {invoices.length > 0 ? (
+      {filteredInvoices.length > 0 ? (
         <ul className={styles.invoiceList}>
           {filteredInvoices?.map(({ id, paymentDue, clientName, total, status }) => (
             <Invoice key={id} {...{ id, paymentDue, clientName, total, status }} />
           ))}
         </ul>
       ) : (
-        <EmptyInvoices />
+        <EmptyInvoices isInvoiceListEmpty={isInvoiceListEmpty} />
       )}
     </div>
   );

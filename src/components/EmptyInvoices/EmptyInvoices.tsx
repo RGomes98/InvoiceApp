@@ -4,7 +4,7 @@ import { useThemeContext } from '../../hooks/useThemeContext';
 import EmptyLogo from '../../assets/svgs/illustration-empty.svg?react';
 import styles from './EmptyInvoices.module.scss';
 
-export const EmptyInvoices = () => {
+export const EmptyInvoices = ({ isInvoiceListEmpty }: { isInvoiceListEmpty: boolean }) => {
   const { activeTheme } = useThemeContext();
 
   return (
@@ -12,10 +12,15 @@ export const EmptyInvoices = () => {
       <EmptyLogo />
       <div className={styles.textWrapper}>
         <span className={styles.heading}>There is nothing here</span>
-        <p className={styles.text}>
-          Create an invoice by clicking the <span className={styles.variant}>New Invoice</span> button and get
-          started
-        </p>
+
+        {isInvoiceListEmpty ? (
+          <p className={styles.text}>
+            Create an invoice by clicking the <span className={styles.variant}>New Invoice</span> button and
+            get started
+          </p>
+        ) : (
+          <p className={styles.text}>There are no invoices to display based on the selected status</p>
+        )}
       </div>
     </div>
   );
