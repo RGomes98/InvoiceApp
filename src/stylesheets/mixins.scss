@@ -66,3 +66,18 @@
     }
   }
 }
+
+@mixin ShowModalAnimation($container, $animationSettings) {
+  .#{$container} {
+    animation: showModal $animationSettings;
+  }
+
+  @keyframes showModal {
+    from {
+      scale: -5%;
+    }
+    to {
+      scale: initial;
+    }
+  }
+}

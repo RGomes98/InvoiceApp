@@ -5,18 +5,18 @@ import { useThemeContext } from '../../hooks/useThemeContext';
 
 import styles from './ActionsButtons.module.scss';
 
-export const ActionsButtons = () => {
-  const { deleteInvoice, markInvoiceAsPaid } = useInvoiceActions();
+export const ActionsButtons = ({ handleShowModal }: { handleShowModal: () => void }) => {
   const { invoices, activeInvoiceId } = useInvoiceContext();
+  const { markInvoiceAsPaid } = useInvoiceActions();
   const { activeTheme } = useThemeContext();
 
   const currentInvoice = invoices?.find(({ id }) => id === activeInvoiceId);
   if (!currentInvoice) return null;
 
   return (
-    <li className={`${styles.actionItem} ${getActiveThemeStyles(styles[activeTheme])}`}>
+    <div className={`${styles.actionItem} ${getActiveThemeStyles(styles[activeTheme])}`}>
       {currentInvoice?.status !== 'paid' && <button className={styles.editButton}>Edit</button>}
-      <button className={styles.deleteButton} onClick={() => deleteInvoice(currentInvoice.id)}>
+      <button className={styles.deleteButton} onClick={handleShowModal}>
         Delete
       </button>
       {currentInvoice?.status === 'pending' && (
@@ -24,6 +24,6 @@ export const ActionsButtons = () => {
           Mark as Paid
         </button>
       )}
-    </li>
+    </div>
   );
 };
