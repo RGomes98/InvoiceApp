@@ -56,7 +56,7 @@
 
 //Dark Mode
 .dark {
-  :nth-child(1) {
+  .editButton {
     background-color: variable.$delft-blue;
 
     &:hover {
