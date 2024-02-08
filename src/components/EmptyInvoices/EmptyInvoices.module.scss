@@ -23,8 +23,13 @@
   letter-spacing: variable.$letter-spacing-minus-0-75;
 }
 
-.text {
+.text,
+.textFilter {
   @include mixin.BodyFont(compact);
+}
+
+.text:last-of-type {
+  display: none;
 }
 
 .variant {
@@ -41,5 +46,15 @@
 
   .text {
     color: variable.$lavender;
+  }
+}
+
+@media (width <= variable.$mobile) {
+  .text:first-of-type {
+    display: none;
+  }
+
+  .text:last-of-type {
+    display: initial;
   }
 }
