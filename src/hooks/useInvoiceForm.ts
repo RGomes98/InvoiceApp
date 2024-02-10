@@ -114,7 +114,8 @@ export const useInvoiceForm = (isInvoiceBeingCreated: boolean) => {
 
     setInvoiceItems((prev) => {
       let currentItem = prev[Number(id)];
-      currentItem = { ...currentItem, [name]: value, total: getItemTotalPrice(prev[Number(id)]) };
+      currentItem = { ...currentItem, [name]: value };
+      currentItem.total = getItemTotalPrice(currentItem);
       prev[Number(id)] = currentItem;
       return [...prev];
     });
