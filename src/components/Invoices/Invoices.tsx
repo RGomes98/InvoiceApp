@@ -11,7 +11,10 @@ export const Invoices = () => {
   const { invoices } = useInvoicesFetch();
 
   if (!invoices) return null;
-  const filteredInvoices = invoices?.filter(({ status }) => status === (activeFilter || status));
+  const filteredInvoices = invoices
+    ?.filter(({ status }) => status === (activeFilter || status))
+    .sort(({ createdAt: a }, { createdAt: b }) => new Date(b).getTime() - new Date(a).getTime());
+
   const isInvoiceListEmpty = invoices.length === 0;
 
   return (
