@@ -47,9 +47,9 @@
 
 .dateInput {
   display: flex;
+  appearance: none;
   position: relative;
   align-items: center;
-  justify-content: flex-end;
   @include mixin.FormInput;
 
   &::-webkit-calendar-picker-indicator {
@@ -58,6 +58,7 @@
 
   &::after {
     content: '';
+    right: 1rem;
     width: 1rem;
     height: 1rem;
     position: absolute;
