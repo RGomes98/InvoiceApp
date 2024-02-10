@@ -18,7 +18,8 @@ export const InvoiceItemsFormSlice = ({
   handleDeleteInvoiceItem,
 }: InvoiceItemsFormSliceType) => {
   const handleNumberInput = (event: ChangeEvent<HTMLInputElement>) => {
-    event.target.value = formatNumberInput(event.target.value);
+    const field = event.target.id.split('-')[1];
+    event.target.value = formatNumberInput(event.target.value, field);
     handleUpdateItemValue(event);
   };
 
@@ -47,7 +48,6 @@ export const InvoiceItemsFormSlice = ({
                   className={`${styles.productName} ${getFormErrorStyles(styles.inputError, errors?.name)}`}
                   type='text'
                   value={name}
-                  inputMode='numeric'
                   id={`${index}-name`}
                   onChange={handleUpdateItemValue}
                 />
