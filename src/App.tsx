@@ -1,6 +1,6 @@
 import { InvoiceDetails } from './components/InvoiceDetails/InvoiceDetails';
+import { InvoiceForm } from './components/InvoiceForm/InvoiceForm';
 import { useBodyScrollToggle } from './hooks/useBodyScrollToggle';
-import { useInvoiceContext } from './hooks/useInvoiceContext';
 import { useThemeContext } from './hooks/useThemeContext';
 import { Invoices } from './components/Invoices/Invoices';
 import { Sidebar } from './components/Sidebar/Sidebar';
@@ -8,9 +8,8 @@ import { Sidebar } from './components/Sidebar/Sidebar';
 import '../src/stylesheets/globals.scss';
 
 export default function App() {
-  const { isInvoiceMenuActive } = useInvoiceContext();
   const { activeTheme } = useThemeContext();
-  useBodyScrollToggle(isInvoiceMenuActive);
+  useBodyScrollToggle();
 
   return (
     <div className={`theme-container ${activeTheme}`}>
@@ -19,6 +18,7 @@ export default function App() {
         <Invoices />
         <InvoiceDetails />
       </main>
+      <InvoiceForm />
     </div>
   );
 }

@@ -1,0 +1,217 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.container {
+  z-index: 12;
+  width: 100%;
+  display: flex;
+  height: 100vh;
+  position: fixed;
+  overflow: hidden;
+  max-width: 44.75rem;
+  flex-direction: column;
+  transform: translateX(-100%);
+  background-color: variable.$white;
+  border-radius: 0 1.25rem 1.25rem 0;
+  transition: transform variable.$ease-500ms;
+}
+
+.showForm {
+  transform: translateX(0);
+}
+
+.overlay {
+  inset: 0;
+  display: none;
+  position: fixed;
+  background-color: variable.$transparent-black-50;
+}
+
+.showOverlay {
+  display: initial;
+}
+
+.form {
+  gap: 2.875rem;
+  display: flex;
+  overflow-y: auto;
+  flex-direction: column;
+  padding-block: 3.75rem 10rem;
+  background-color: transparent;
+  @include mixin.VignetteEffect;
+  padding-inline: 9.25rem 3.5rem;
+  border-radius: 0 1.25rem 1.25rem 0;
+
+  &::-webkit-scrollbar {
+    width: 0.5rem;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 0.625rem;
+    background-color: variable.$lavender;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: transparent;
+    margin-block: 8.438rem 39.688rem;
+    border-radius: 0 1.25rem 1.25rem 0;
+  }
+}
+
+.backButtonWrapper {
+  display: none;
+}
+
+.formHeading {
+  font-weight: variable.$bold;
+  font-size: variable.$font-24;
+  line-height: variable.$line-height-32;
+  letter-spacing: variable.$letter-spacing-minus-0-50;
+}
+
+.variant {
+  color: variable.$cool-gray;
+}
+
+.id,
+.status {
+  display: none;
+}
+
+.buttonWrapper {
+  bottom: 0;
+  width: 100%;
+  z-index: 10;
+  display: flex;
+  position: absolute;
+  padding-block: 2rem;
+  justify-content: flex-end;
+  padding-inline: 9.25rem 3.5rem;
+  background-color: variable.$white;
+  border-radius: 0 1.25rem 1.25rem 0;
+}
+
+.editButtonWrapper {
+  gap: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.cancel,
+.discard {
+  @include mixin.Button(variable.$magnolia, variable.$glaucous, variable.$lavender, variable.$glaucous);
+}
+
+.save {
+  @include mixin.Button(
+    variable.$electric-indigo,
+    variable.$white,
+    variable.$tropical-indigo,
+    variable.$white
+  );
+}
+
+.createButtonWrapper {
+  gap: 0.5rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.discard {
+  margin-right: auto;
+}
+
+.saveDraft {
+  @include mixin.Button(variable.$jet, variable.$cool-gray, variable.$black, variable.$cool-gray);
+}
+
+@media (width <= variable.$tablet) {
+  .container {
+    left: 0;
+    margin-top: 5rem;
+    border-radius: 0 1.25rem 1.25rem 0;
+  }
+
+  .overlay {
+    z-index: 10;
+  }
+
+  .form {
+    padding-inline: 3.5rem;
+    padding-block: 3.688rem 15rem;
+  }
+
+  .buttonWrapper {
+    bottom: 5rem;
+    padding-inline: 3.5rem;
+  }
+}
+
+//Dark Theme
+.dark {
+  background-color: transparent;
+
+  .form,
+  .buttonWrapper {
+    background-color: variable.$raisin-black;
+  }
+
+  .formHeading {
+    color: variable.$white;
+  }
+
+  .form {
+    &::-webkit-scrollbar-thumb {
+      background-color: variable.$delft-blue;
+    }
+  }
+
+  .saveDraft {
+    @include mixin.Button(variable.$jet, variable.$lavender, variable.$space-cadet, variable.$lavender);
+  }
+
+  .cancel {
+    @include mixin.Button(variable.$delft-blue, variable.$lavender, variable.$delft-blue, variable.$lavender);
+  }
+}
+
+@media (width <= variable.$mobile) {
+  .container {
+    margin-top: 4.5rem;
+    border-radius: initial;
+  }
+
+  .form {
+    gap: 1.5rem;
+    padding-inline: 1.5rem;
+    padding-block: 2rem 12rem;
+  }
+
+  .backButtonWrapper {
+    display: initial;
+  }
+
+  .discard {
+    margin-right: initial;
+  }
+
+  .createButtonWrapper {
+    justify-content: space-between;
+  }
+
+  .buttonWrapper {
+    bottom: 4.5rem;
+    border-radius: initial;
+    padding-inline: 1.5rem;
+    padding-block: 1.375rem;
+  }
+
+  .cancel,
+  .discard,
+  .save,
+  .saveDraft {
+    font-size: variable.$font-13;
+  }
+}

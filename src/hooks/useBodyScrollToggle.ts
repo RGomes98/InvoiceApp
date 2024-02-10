@@ -1,11 +1,13 @@
 import { useEffect } from 'react';
+import { useInvoiceContext } from './useInvoiceContext';
 
-export const useBodyScrollToggle = (isInvoiceMenuActive: boolean) => {
+export const useBodyScrollToggle = () => {
+  const { isInvoiceFormActive, isInvoiceMenuActive } = useInvoiceContext();
   useEffect(() => {
     const body = document.querySelector('body');
     if (!body) return;
 
-    if (isInvoiceMenuActive) body.style.overflowY = 'hidden';
+    if (isInvoiceFormActive || isInvoiceMenuActive) body.style.overflowY = 'hidden';
     else body.style.overflowY = 'auto';
-  }, [isInvoiceMenuActive]);
+  }, [isInvoiceMenuActive, isInvoiceFormActive]);
 };

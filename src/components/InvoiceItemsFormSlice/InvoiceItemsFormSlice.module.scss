@@ -1,0 +1,213 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.container {
+  display: flex;
+  flex-direction: column;
+}
+
+.headingWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.heading {
+  margin-bottom: 0.925rem;
+  color: variable.$slate-gray;
+  font-weight: variable.$bold;
+  font-size: variable.$font-18;
+  line-height: variable.$line-height-32;
+}
+
+.productDescriptionList {
+  display: grid;
+  list-style: none;
+  margin-bottom: 1rem;
+  grid-template-columns: 3fr 1fr 1.5fr 1.5fr 0.5fr;
+}
+
+.productDescriptionItem {
+  @include mixin.BodyFont(compact);
+  color: variable.$glaucous;
+}
+
+.productList {
+  gap: 1.125rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.productItem {
+  gap: 1rem;
+  width: 100%;
+  display: grid;
+  list-style: none;
+  grid-template-columns: 3fr 1fr 1.5fr 1.5fr 0.5fr;
+}
+
+.inputWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.mobileDescription {
+  display: none;
+  @include mixin.BodyFont(compact);
+  color: variable.$glaucous;
+}
+
+.productQuantity,
+.productTotal {
+  @include mixin.FormInput;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  padding-inline: initial;
+}
+
+.productQuantity {
+  padding-inline: 1rem;
+}
+
+.productName,
+.productPrice {
+  @include mixin.FormInput;
+  padding-inline: 1rem;
+  text-align: left;
+}
+
+.inputError {
+  border-color: variable.$indian-red;
+}
+
+.productTotal {
+  border: transparent;
+  color: variable.$cool-gray;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.removeButton {
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  border: transparent;
+  justify-content: center;
+  background-color: transparent;
+
+  path {
+    fill: variable.$french-gray;
+    transition: fill variable.$ease-200ms;
+  }
+
+  &:hover path {
+    fill: variable.$indian-red;
+  }
+}
+
+.addWrapper {
+  gap: 1rem;
+  display: flex;
+  margin-top: 1rem;
+  flex-direction: column;
+}
+
+.addButton {
+  @include mixin.Button(variable.$magnolia, variable.$glaucous, variable.$lavender, variable.$glaucous);
+}
+
+//Dark Theme
+.dark {
+  .productDescriptionItem,
+  .mobileDescription {
+    color: variable.$lavender;
+  }
+
+  .labelError {
+    color: variable.$indian-red;
+  }
+
+  .productTotal {
+    color: variable.$lavender;
+  }
+
+  .productQuantity,
+  .productName,
+  .productPrice {
+    color: variable.$white;
+    border-color: variable.$delft-blue;
+    background-color: variable.$space-cadet;
+
+    &:focus {
+      border-color: variable.$electric-indigo;
+    }
+  }
+
+  .addButton {
+    @include mixin.Button(
+      variable.$space-cadet,
+      variable.$lavender,
+      variable.$space-cadet,
+      variable.$lavender
+    );
+  }
+
+  .inputError {
+    border-color: variable.$indian-red;
+  }
+}
+
+@media (width <= variable.$mobile) {
+  .productDescriptionList {
+    display: none;
+  }
+
+  .heading {
+    margin-bottom: 1.5rem;
+  }
+
+  .mobileDescription {
+    display: initial;
+  }
+
+  .productList {
+    gap: 3.125rem;
+  }
+
+  .productItem {
+    grid-template-columns: 1.5fr 3fr 3fr 1.5fr 0.5fr;
+
+    .itemWrapper {
+      gap: 0.563rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    & > :nth-child(1) {
+      gap: 1rem;
+      display: flex;
+      grid-column: 1/-1;
+      flex-direction: column;
+    }
+
+    & > :nth-child(4) {
+      grid-column: 3/5;
+
+      .mobileDescription {
+        padding-inline: 1rem;
+      }
+    }
+  }
+
+  .removeButton {
+    height: 3rem;
+    margin-top: auto;
+  }
+
+  .addWrapper {
+    margin-top: 3.125rem;
+  }
+}

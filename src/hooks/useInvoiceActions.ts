@@ -1,8 +1,9 @@
 import type { Invoice, Item } from '../lib/schemas/invoice.schema';
-import { getDaysDifference } from '../utils/getDaysDifference';
 import { useInvoiceContext } from './useInvoiceContext';
+import { formatToDateTime } from '../utils/formatDate';
+import { getFutureDate } from '../utils/getFutureDate';
 
-type CreateInvoice = Omit<Invoice, 'id' | 'createdAt' | 'paymentTerms' | 'total'>;
+type CreateInvoice = Omit<Invoice, 'total' | 'paymentDue'>;
 type UpdateInvoice = Omit<CreateInvoice, 'status'>;
 
 export const useInvoiceActions = () => {
@@ -13,26 +14,21 @@ export const useInvoiceActions = () => {
     localStorage.setItem('invoices', JSON.stringify(invoicesToUpdate));
   };
 
-  const generateInvoiceId = () => crypto.randomUUID().slice(0, 6).toUpperCase();
-
-  const getInvoicePaymentTerms = (createdAt: Date, paymentDue: Date) => {
-    return getDaysDifference(createdAt, paymentDue);
-  };
-
-  const getInvoiceItemsTotal = (items: Item[]) => {
-    return items.reduce((total, { quantity, price }) => (total += quantity * price), 0);
+  const getInvoiceItemsTotal = (items: Item) => {
+    return items?.reduce((total, { quantity, price }) => (total += quantity * price), 0);
   };
 
   const createInvoice = (invoice: CreateInvoice) => {
     if (!invoices) return;
-    const currentDate = new Date();
+    const currentDate = new Date(invoice.createdAt);
 
     const newInvoice = {
       ...invoice,
-      createdAt: currentDate,
-      id: generateInvoiceId(),
+      id: invoice.id,
+      paymentTerms: invoice.paymentTerms,
+      createdAt: formatToDateTime(currentDate),
       total: getInvoiceItemsTotal(invoice.items),
-      paymentTerms: getInvoicePaymentTerms(currentDate, invoice.paymentDue),
+      paymentDue: getFutureDate(currentDate, invoice.paymentTerms),
     };
 
     updateInvoices([...invoices, newInvoice]);
@@ -40,15 +36,17 @@ export const useInvoiceActions = () => {
 
   const updateInvoice = (invoiceId: string, updatedInvoice: UpdateInvoice) => {
     const invoiceToUpdate = invoices?.find(({ id }) => id === invoiceId);
+
     if (!invoices || !invoiceToUpdate) return;
 
     const invoice = {
       ...updatedInvoice,
       id: invoiceToUpdate.id,
       status: invoiceToUpdate.status,
-      createdAt: invoiceToUpdate.createdAt,
+      createdAt: updatedInvoice.createdAt,
+      paymentTerms: updatedInvoice.paymentTerms,
       total: getInvoiceItemsTotal(updatedInvoice.items),
-      paymentTerms: getInvoicePaymentTerms(invoiceToUpdate.createdAt, updatedInvoice.paymentDue),
+      paymentDue: getFutureDate(new Date(updatedInvoice.createdAt), updatedInvoice.paymentTerms),
     };
 
     updateInvoices([...invoices.filter(({ id }) => id !== invoiceId), invoice]);

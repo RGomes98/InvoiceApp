@@ -1,0 +1,6 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.errorMessage {
+  @include mixin.ErrorMessage;
+}

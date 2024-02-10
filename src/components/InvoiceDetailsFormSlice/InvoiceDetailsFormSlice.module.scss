@@ -1,0 +1,120 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.detailsWrapper {
+  gap: 1.5rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.dateWrapper {
+  gap: 1.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.inputWrapper {
+  width: 100%;
+  gap: 0.563rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  padding-right: 0.5rem;
+  justify-content: space-between;
+}
+
+.label {
+  @include mixin.BodyFont(compact);
+  color: variable.$glaucous;
+}
+
+.labelError {
+  color: variable.$indian-red;
+}
+
+.input {
+  @include mixin.FormInput;
+}
+
+.inputError {
+  border-color: variable.$indian-red;
+}
+
+.dateInput {
+  display: flex;
+  position: relative;
+  align-items: center;
+  justify-content: flex-end;
+  @include mixin.FormInput;
+
+  &::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+  }
+
+  &::after {
+    content: '';
+    width: 1rem;
+    height: 1rem;
+    position: absolute;
+    pointer-events: none;
+    padding-right: inherit;
+    background-repeat: no-repeat;
+    background-image: url('../../assets/icons/icon-calendar.svg');
+  }
+}
+
+.select {
+  appearance: none;
+  position: absolute;
+  position: relative;
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-image: url('../../assets/icons/icon-arrow-down.svg');
+  @include mixin.FormInput;
+}
+
+@media (width <= variable.$mobile) {
+  .detailsWrapper {
+    margin-top: 1rem;
+  }
+
+  .dateWrapper {
+    flex-direction: column;
+  }
+}
+
+//Dark Theme
+.dark {
+  .label {
+    color: variable.$lavender;
+  }
+
+  .labelError {
+    color: variable.$indian-red;
+  }
+
+  .input,
+  .select,
+  .dateInput {
+    color: variable.$white;
+    border-color: variable.$delft-blue;
+    background-color: variable.$space-cadet;
+
+    &:focus {
+      border-color: variable.$electric-indigo;
+    }
+
+    &::after {
+      background-color: variable.$space-cadet;
+    }
+  }
+
+  .inputError {
+    border-color: variable.$indian-red;
+  }
+}

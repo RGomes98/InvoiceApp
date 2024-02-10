@@ -1,0 +1,88 @@
+@use '../../stylesheets/variables' as variable;
+@use '../../stylesheets/mixins' as mixin;
+
+.heading {
+  @include mixin.HeadingSmall(compact);
+  color: variable.$electric-indigo;
+}
+
+.senderWrapper {
+  gap: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.inputWrapper {
+  gap: 0.563rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.labelWrapper {
+  display: flex;
+  align-items: center;
+  padding-right: 0.5rem;
+  justify-content: space-between;
+}
+
+.label {
+  @include mixin.BodyFont(compact);
+  color: variable.$glaucous;
+}
+
+.labelError {
+  color: variable.$indian-red;
+}
+
+.input {
+  @include mixin.FormInput;
+}
+
+.inputError {
+  border-color: variable.$indian-red;
+}
+
+.addressWrapper {
+  gap: 1.5rem;
+  display: flex;
+}
+
+//Dark Theme
+.dark {
+  .label {
+    color: variable.$lavender;
+  }
+
+  .labelError {
+    color: variable.$indian-red;
+  }
+
+  .input {
+    color: variable.$white;
+    border-color: variable.$delft-blue;
+    background-color: variable.$space-cadet;
+
+    &:focus {
+      border-color: variable.$electric-indigo;
+    }
+  }
+
+  .inputError {
+    border-color: variable.$indian-red;
+  }
+}
+
+@media (width <= variable.$mobile) {
+  .addressWrapper {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .addressWrapper > :nth-child(1),
+  .addressWrapper > :nth-child(2) {
+    width: calc(50% - 0.5rem);
+  }
+
+  .addressWrapper :last-child {
+    width: 100%;
+  }
+}

@@ -16,6 +16,10 @@ type InvoiceContext = {
   setActiveInvoiceId: Dispatch<SetStateAction<string>>;
   isInvoiceMenuActive: boolean;
   setIsInvoiceMenuActive: Dispatch<SetStateAction<boolean>>;
+  isInvoiceFormActive: boolean;
+  setIsInvoiceFormActive: Dispatch<SetStateAction<boolean>>;
+  isInvoiceBeingCreated: boolean;
+  setIsInvoiceBeingCreated: Dispatch<SetStateAction<boolean>>;
 };
 
 export const InvoiceContext = createContext<InvoiceContext | null>(null);
@@ -25,7 +29,9 @@ const currentInvoices = validateInvoices() || null;
 export const InvoiceContextProvider = ({ children }: { children: ReactNode }) => {
   const [invoices, setInvoices] = useState<Invoice[] | null>(currentInvoices);
   const [activeFilter, setActiveFilter] = useState<FilterOptions>(undefined);
+  const [isInvoiceBeingCreated, setIsInvoiceBeingCreated] = useState(false);
   const [isInvoiceMenuActive, setIsInvoiceMenuActive] = useState(false);
+  const [isInvoiceFormActive, setIsInvoiceFormActive] = useState(false);
   const [activeInvoiceId, setActiveInvoiceId] = useState<string>('');
   const [isDropdownActive, setIsDropdownActive] = useState(false);
 
@@ -42,6 +48,10 @@ export const InvoiceContextProvider = ({ children }: { children: ReactNode }) =>
         setActiveInvoiceId,
         isInvoiceMenuActive,
         setIsInvoiceMenuActive,
+        isInvoiceFormActive,
+        setIsInvoiceFormActive,
+        isInvoiceBeingCreated,
+        setIsInvoiceBeingCreated,
       }}
     >
       {children}
