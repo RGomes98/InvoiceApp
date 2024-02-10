@@ -114,3 +114,9 @@
     color: variable.$white;
   }
 }
+
+@media (width <= 500px) {
+  .clientItem:nth-child(3) {
+    width: 100%;
+  }
+}

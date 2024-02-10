@@ -86,7 +86,9 @@
   }
 
   .actionsButtons {
+    bottom: 0;
     display: flex;
+    position: sticky;
     margin-top: auto;
     align-items: center;
     margin-inline: -3rem;
