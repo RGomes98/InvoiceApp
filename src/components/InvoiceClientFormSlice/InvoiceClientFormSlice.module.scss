@@ -87,7 +87,7 @@
     width: calc(50% - 0.5rem);
   }
 
-  .addressWrapper :last-child {
+  .addressWrapper > :last-child {
     width: 100%;
   }
 }
