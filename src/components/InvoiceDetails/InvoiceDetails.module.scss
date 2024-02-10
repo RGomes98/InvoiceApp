@@ -15,8 +15,8 @@
   padding-inline: inherit;
   transform: translateX(105%);
   transition: transform 500ms;
-  animation: showInvoice 500ms;
   background-color: variable.$seasalt;
+  animation: showInvoice variable.$ease-500ms;
 }
 
 @keyframes showInvoice {

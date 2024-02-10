@@ -14,7 +14,7 @@ import { Fragment } from 'react';
 import styles from './InvoiceDetails.module.scss';
 
 export const InvoiceDetails = () => {
-  const { invoices, activeInvoiceId, isInvoiceMenuActive } = useInvoiceContext();
+  const { invoices, activeInvoiceId, isInvoiceMenuActive, setIsInvoiceMenuActive } = useInvoiceContext();
   const { modalRef, handleShowModal, handleCloseModal } = useDeleteModal();
   const { activeTheme } = useThemeContext();
 
@@ -28,7 +28,7 @@ export const InvoiceDetails = () => {
           (isInvoiceMenuActive && styles.showInvoice) || ''
         }`}
       >
-        <BackButton />
+        <BackButton action={() => setIsInvoiceMenuActive(false)} />
         <InvoiceActions invoiceStatus={invoice.status}>
           <ActionsButtons handleShowModal={handleShowModal} />
         </InvoiceActions>
