@@ -128,28 +128,6 @@
   @include mixin.Button(variable.$jet, variable.$cool-gray, variable.$black, variable.$cool-gray);
 }
 
-@media (width <= variable.$tablet) {
-  .container {
-    left: 0;
-    margin-top: 5rem;
-    border-radius: 0 1.25rem 1.25rem 0;
-  }
-
-  .overlay {
-    z-index: 10;
-  }
-
-  .form {
-    padding-inline: 3.5rem;
-    padding-block: 3.688rem 15rem;
-  }
-
-  .buttonWrapper {
-    bottom: 5rem;
-    padding-inline: 3.5rem;
-  }
-}
-
 //Dark Theme
 .dark {
   background-color: transparent;
@@ -175,6 +153,35 @@
 
   .cancel {
     @include mixin.Button(variable.$delft-blue, variable.$lavender, variable.$delft-blue, variable.$lavender);
+  }
+
+  @media (width <= variable.$mobile) {
+    .cancel,
+    .saveDraft {
+      font-size: variable.$font-13;
+    }
+  }
+}
+
+@media (width <= variable.$tablet) {
+  .container {
+    left: 0;
+    margin-top: 5rem;
+    border-radius: 0 1.25rem 1.25rem 0;
+  }
+
+  .overlay {
+    z-index: 10;
+  }
+
+  .form {
+    padding-inline: 3.5rem;
+    padding-block: 3.688rem 15rem;
+  }
+
+  .buttonWrapper {
+    bottom: 5rem;
+    padding-inline: 3.5rem;
   }
 }
 
