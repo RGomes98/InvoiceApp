@@ -13,7 +13,7 @@ export const InvoiceClient = ({ invoice }: { invoice: Invoice }) => {
       <li className={styles.clientItem}>
         <div className={styles.invoiceDate}>
           <span className={styles.dateHeading}>Invoice Date</span>
-          <span className={styles.date}>{formatDate(invoice.createdAt)}</span>
+          <span className={styles.date}>{formatDate(new Date(invoice.createdAt))}</span>
         </div>
         <div className={styles.invoicePayment}>
           <span className={styles.paymentHeading}>Payment Due</span>

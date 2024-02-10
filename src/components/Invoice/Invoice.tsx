@@ -1,9 +1,9 @@
 import type { Invoice as InvoiceType } from '../../lib/schemas/invoice.schema';
 import { getActiveThemeStyles } from '../../utils/getActiveThemeStyles';
 import { useInvoiceContext } from '../../hooks/useInvoiceContext';
+import { formatToCurrency } from '../../utils/formatToCurrency';
 import { InvoiceStatus } from '../InvoiceStatus/InvoiceStatus';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { formatCurrency } from '../../utils/FormatCurrency';
 import { formatDate } from '../../utils/formatDate';
 
 import ArrowLeftIcon from '../../assets/icons/icon-arrow-right.svg?react';
@@ -34,7 +34,7 @@ export const Invoice = ({ id, paymentDue, clientName, total, status }: Invoice) 
           <span className={styles.clientName}>{clientName}</span>
         </div>
         <div className={styles.totalWrapper}>
-          <span className={styles.total}>{formatCurrency(total)}</span>
+          <span className={styles.total}>{formatToCurrency(total)}</span>
           <InvoiceStatus {...{ status }} />
           <ArrowLeftIcon className={styles.icon} />
         </div>

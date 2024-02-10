@@ -1,7 +1,7 @@
 import { getActiveThemeStyles } from '../../utils/getActiveThemeStyles';
 import type { Invoice } from '../../lib/schemas/invoice.schema';
 import { useThemeContext } from '../../hooks/useThemeContext';
-import { formatCurrency } from '../../utils/FormatCurrency';
+import { formatToCurrency } from '../../utils/formatToCurrency';
 
 import styles from './InvoiceProducts.module.scss';
 
@@ -18,7 +18,7 @@ export const InvoiceProducts = ({ invoice }: { invoice: Invoice }) => {
               <div className={styles.productDetails} key={index}>
                 <span className={styles.productText}>{name}</span>
                 <span className={styles.mobileQuantity}>
-                  {quantity} x {formatCurrency(price)}
+                  {quantity} x {formatToCurrency(price)}
                 </span>
               </div>
             );
@@ -39,7 +39,7 @@ export const InvoiceProducts = ({ invoice }: { invoice: Invoice }) => {
           {invoice.items.map(({ price }, index) => {
             return (
               <span className={styles.productText} key={index}>
-                {formatCurrency(price)}
+                {formatToCurrency(price)}
               </span>
             );
           })}
@@ -49,7 +49,7 @@ export const InvoiceProducts = ({ invoice }: { invoice: Invoice }) => {
           {invoice.items.map(({ total }, index) => {
             return (
               <span className={styles.productText} key={index}>
-                {formatCurrency(total)}
+                {formatToCurrency(total)}
               </span>
             );
           })}
@@ -58,7 +58,7 @@ export const InvoiceProducts = ({ invoice }: { invoice: Invoice }) => {
       <div className={styles.totalWrapper}>
         <span className={styles.totalHeading}>Amount Due</span>
         <span className={styles.totalHeading}>Grand Total</span>
-        <span className={styles.totalValue}>{formatCurrency(invoice.total)}</span>
+        <span className={styles.totalValue}>{formatToCurrency(invoice.total)}</span>
       </div>
     </div>
   );
