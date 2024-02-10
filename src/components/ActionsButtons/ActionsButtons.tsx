@@ -7,7 +7,7 @@ import styles from './ActionsButtons.module.scss';
 
 export const ActionsButtons = ({ handleShowModal }: { handleShowModal: () => void }) => {
   const { invoices, activeInvoiceId, setIsInvoiceFormActive, setIsInvoiceBeingCreated } = useInvoiceContext();
-  const { markInvoiceAsPaid } = useInvoiceActions();
+  const { markInvoiceAsPaid, sendInvoice } = useInvoiceActions();
   const { activeTheme } = useThemeContext();
 
   const currentInvoice = invoices?.find(({ id }) => id === activeInvoiceId);
@@ -22,6 +22,10 @@ export const ActionsButtons = ({ handleShowModal }: { handleShowModal: () => voi
     markInvoiceAsPaid(currentInvoice.id);
   };
 
+  const handleSendInvoice = () => {
+    sendInvoice(currentInvoice.id);
+  };
+
   return (
     <div className={`${styles.actionItem} ${getActiveThemeStyles(styles[activeTheme])}`}>
       {currentInvoice?.status !== 'paid' && (
@@ -32,6 +36,11 @@ export const ActionsButtons = ({ handleShowModal }: { handleShowModal: () => voi
       <button className={styles.deleteButton} onClick={handleShowModal}>
         Delete
       </button>
+      {currentInvoice?.status === 'draft' && (
+        <button onClick={handleSendInvoice} className={styles.paidButton}>
+          Send
+        </button>
+      )}
       {currentInvoice?.status === 'pending' && (
         <button onClick={handleMarkAsPaid} className={styles.paidButton}>
           Mark as Paid

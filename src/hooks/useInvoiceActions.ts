@@ -65,5 +65,13 @@ export const useInvoiceActions = () => {
     updateInvoices([...invoices.filter(({ id }) => id !== invoiceId), invoiceToUpdate]);
   };
 
-  return { createInvoice, updateInvoice, deleteInvoice, markInvoiceAsPaid };
+  const sendInvoice = (invoiceId: string) => {
+    const invoiceToUpdate = invoices?.find(({ id }) => id === invoiceId);
+    if (!invoices || !invoiceToUpdate) return;
+
+    invoiceToUpdate.status = 'pending';
+    updateInvoices([...invoices.filter(({ id }) => id !== invoiceId), invoiceToUpdate]);
+  };
+
+  return { createInvoice, updateInvoice, deleteInvoice, markInvoiceAsPaid, sendInvoice };
 };
