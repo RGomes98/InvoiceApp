@@ -102,10 +102,6 @@
   -webkit-box-shadow: inset 0px -150px 125px -135px variable.$transparent-black-50;
   -moz-box-shadow: inset 0px -150px 125px -135px variable.$transparent-black-50;
   box-shadow: inset 0px -175px 125px -135px variable.$transparent-black-50;
-
-  @media (width <= variable.$tablet) {
-    box-shadow: inset 0px -200px 125px -135px variable.$transparent-black-50;
-  }
 }
 
 //Animations
