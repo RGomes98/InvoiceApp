@@ -23,7 +23,7 @@ export const addressSchema = z.object({
 
 export const invoiceSchema = z.object({
   id: z.string().trim().length(6),
-  createdAt: z.string(),
+  createdAt: z.string().min(1, { message: 'can`t be empty' }),
   paymentDue: z.coerce.date(),
   description: z.string().trim().min(10, { message: 'must be at least 10 characters long' }),
   paymentTerms: z.coerce.number(),

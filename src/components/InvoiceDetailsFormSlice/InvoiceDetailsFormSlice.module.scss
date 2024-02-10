@@ -41,10 +41,6 @@
   @include mixin.FormInput;
 }
 
-.inputError {
-  border-color: variable.$indian-red;
-}
-
 .dateInput {
   display: flex;
   appearance: none;
@@ -67,6 +63,10 @@
     background-repeat: no-repeat;
     background-image: url('../../assets/icons/icon-calendar.svg');
   }
+}
+
+.inputError {
+  border-color: variable.$indian-red;
 }
 
 .select {

@@ -9,18 +9,27 @@ import styles from './InvoiceDetailsFormSlice.module.scss';
 export const InvoiceDetailsFormSlice = ({ register, errors }: FormSlice) => {
   const { activeTheme } = useThemeContext();
   const options = [1, 7, 14, 30];
-  const { description } = errors;
+  const { description, createdAt } = errors;
 
   return (
     <div className={`${styles.detailsWrapper} ${getActiveThemeStyles(styles[activeTheme])}`}>
       <div className={styles.dateWrapper}>
         <div className={styles.inputWrapper}>
           <div className={styles.labelWrapper}>
-            <label className={styles.label} htmlFor='invoiceDate'>
+            <label
+              className={`${styles.label} ${getFormErrorStyles(styles.labelError, createdAt?.message)}`}
+              htmlFor='invoiceDate'
+            >
               Invoice Date
             </label>
+            <ErrorMessage error={createdAt?.message} />
           </div>
-          <input className={styles.dateInput} id='invoiceDate' type='date' {...register('createdAt')} />
+          <input
+            className={`${styles.dateInput} ${getFormErrorStyles(styles.inputError, createdAt?.message)}`}
+            id='invoiceDate'
+            type='date'
+            {...register('createdAt')}
+          />
         </div>
         <div className={styles.inputWrapper}>
           <div className={styles.labelWrapper}>
