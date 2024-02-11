@@ -45,15 +45,21 @@ export const useInvoiceForm = (isInvoiceBeingCreated: boolean) => {
     setInvoiceItemsErrors(undefined);
   };
 
-  const onSubmit = (formData: Invoice) => {
-    const parsedItems = itemSchema.safeParse(invoiceItems);
+  const validateInvoiceItems = (items: Invoice['items'][number][]) => {
+    const parsedItems = itemSchema.safeParse(items);
 
     if (!parsedItems.success) {
       const { issues } = parsedItems.error;
       return setInvoiceItemsErrors(getZodParseErrors(issues));
     }
 
-    const { data } = parsedItems;
+    setInvoiceItemsErrors(undefined);
+    return parsedItems.data;
+  };
+
+  const onSubmit = (formData: Invoice) => {
+    const data = validateInvoiceItems(invoiceItems);
+    if (!data) return;
 
     if (isInvoiceBeingEdited) updateInvoice(invoice.id, { ...formData, items: data });
     if (!isInvoiceBeingEdited) createInvoice({ ...formData, status: invoiceStatus, items: data });
@@ -117,6 +123,7 @@ export const useInvoiceForm = (isInvoiceBeingCreated: boolean) => {
       currentItem = { ...currentItem, [name]: value };
       currentItem.total = getItemTotalPrice(currentItem);
       prev[Number(id)] = currentItem;
+      validateInvoiceItems(prev);
       return [...prev];
     });
   };
