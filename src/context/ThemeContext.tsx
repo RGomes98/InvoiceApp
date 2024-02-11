@@ -10,7 +10,7 @@ type ThemeContext = {
 
 export const ThemeContext = createContext<ThemeContext | null>(null);
 
-const currentTheme = validateTheme() || 'light';
+const currentTheme = validateTheme() || 'dark';
 
 export const ThemeContextProvider = ({ children }: { children: ReactNode }) => {
   const [activeTheme, setActiveTheme] = useState<Theme>(currentTheme);
