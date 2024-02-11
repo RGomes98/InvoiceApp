@@ -1,7 +1,8 @@
 import type { Invoice, Item } from '../lib/schemas/invoice.schema';
 import { useInvoiceContext } from './useInvoiceContext';
-import { formatToDateTime } from '../utils/formatDate';
+import { formatDate, formatToDateTime } from '../utils/formatDate';
 import { getFutureDate } from '../utils/getFutureDate';
+import { toast } from 'sonner';
 
 type CreateInvoice = Omit<Invoice, 'total' | 'paymentDue'>;
 type UpdateInvoice = Omit<CreateInvoice, 'status'>;
@@ -31,6 +32,12 @@ export const useInvoiceActions = () => {
       paymentDue: getFutureDate(currentDate, invoice.paymentTerms),
     };
 
+    toast.success(`Invoice created successfully!`, {
+      duration: 5000,
+      description: `Invoice created for ${newInvoice.clientName} - Due on ${formatDate(
+        newInvoice.paymentDue
+      )}`,
+    });
     updateInvoices([...invoices, newInvoice]);
   };
 
@@ -49,11 +56,13 @@ export const useInvoiceActions = () => {
       paymentDue: getFutureDate(new Date(updatedInvoice.createdAt), updatedInvoice.paymentTerms),
     };
 
+    toast.success(`Invoice #${invoice.id} has been updated successfully!`);
     updateInvoices([...invoices.filter(({ id }) => id !== invoiceId), invoice]);
   };
 
   const deleteInvoice = (invoiceId: string) => {
     if (!invoices) return;
+    toast.success(`Invoice #${invoiceId} has been deleted successfully!`);
     updateInvoices([...invoices.filter(({ id }) => id !== invoiceId)]);
   };
 
@@ -62,6 +71,7 @@ export const useInvoiceActions = () => {
     if (!invoices || !invoiceToUpdate) return;
 
     invoiceToUpdate.status = 'paid';
+    toast.success(`Invoice #${invoiceId} has been marked as paid.`);
     updateInvoices([...invoices.filter(({ id }) => id !== invoiceId), invoiceToUpdate]);
   };
 
@@ -70,6 +80,7 @@ export const useInvoiceActions = () => {
     if (!invoices || !invoiceToUpdate) return;
 
     invoiceToUpdate.status = 'pending';
+    toast.success(`Invoice #${invoiceId} has been sent to ${invoiceToUpdate.clientName}.`);
     updateInvoices([...invoices.filter(({ id }) => id !== invoiceId), invoiceToUpdate]);
   };
 

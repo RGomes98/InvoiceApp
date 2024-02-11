@@ -7,6 +7,7 @@ import { useInvoiceActions } from './useInvoiceActions';
 import { useInvoiceContext } from './useInvoiceContext';
 import { formatToDateTime } from '../utils/formatDate';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { toast } from 'sonner';
 
 export type FormSlice = { register: UseFormRegister<Invoice>; errors: FieldErrors<Invoice> };
 
@@ -33,7 +34,7 @@ export const useInvoiceForm = (isInvoiceBeingCreated: boolean) => {
     reset,
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitted, isSubmitting, isSubmitSuccessful },
   } = useForm<Invoice>({
     resolver: zodResolver(invoiceSchema.omit({ paymentDue: true, total: true, items: true })),
   });
@@ -57,9 +58,12 @@ export const useInvoiceForm = (isInvoiceBeingCreated: boolean) => {
     return parsedItems.data;
   };
 
+  const sendFormErrorToast = () =>
+    toast.error('Failed to submit form. Ensure all fields are properly filled and try once more.');
+
   const onSubmit = (formData: Invoice) => {
     const data = validateInvoiceItems(invoiceItems);
-    if (!data) return;
+    if (!data) return sendFormErrorToast();
 
     if (isInvoiceBeingEdited) updateInvoice(invoice.id, { ...formData, items: data });
     if (!isInvoiceBeingEdited) createInvoice({ ...formData, status: invoiceStatus, items: data });
@@ -92,24 +96,23 @@ export const useInvoiceForm = (isInvoiceBeingCreated: boolean) => {
     });
   }, [reset, invoice, isInvoiceBeingEdited]);
 
-  useEffect(() => {
-    resetInvoiceItems();
-    resetInvoiceValues();
-  }, [isInvoiceFormActive, resetInvoiceItems, resetInvoiceValues]);
-
   const getItemTotalPrice = (item: Invoice['items'][number]) => {
     const { price, quantity } = item;
     return price * quantity;
   };
 
   const handleAddInvoiceItem = () => {
-    setInvoiceItems((prev) => [...prev, { name: '', quantity: 0, price: 0, total: 0 }]);
+    setInvoiceItems((prev) => {
+      validateInvoiceItems(prev);
+      return [...prev, { name: '', quantity: 0, price: 0, total: 0 }];
+    });
   };
 
   const handleDeleteInvoiceItem = (index: number) => {
     setInvoiceItems((prev) => {
       const invoiceItems = structuredClone(prev);
       invoiceItems.splice(index, 1);
+      validateInvoiceItems(prev);
       return invoiceItems;
     });
   };
@@ -127,6 +130,15 @@ export const useInvoiceForm = (isInvoiceBeingCreated: boolean) => {
       return [...prev];
     });
   };
+
+  useEffect(() => {
+    resetInvoiceItems();
+    resetInvoiceValues();
+  }, [isInvoiceFormActive, resetInvoiceItems, resetInvoiceValues]);
+
+  useEffect(() => {
+    if (!isSubmitting && isSubmitted && !isSubmitSuccessful) sendFormErrorToast();
+  }, [isSubmitting, isSubmitted, isSubmitSuccessful]);
 
   return {
     errors,

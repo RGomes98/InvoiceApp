@@ -4,6 +4,7 @@ import { useBodyScrollToggle } from './hooks/useBodyScrollToggle';
 import { useThemeContext } from './hooks/useThemeContext';
 import { Invoices } from './components/Invoices/Invoices';
 import { Sidebar } from './components/Sidebar/Sidebar';
+import { Toaster } from 'sonner';
 
 import '../src/stylesheets/globals.scss';
 
@@ -19,6 +20,7 @@ export default function App() {
         <InvoiceDetails />
       </main>
       <InvoiceForm />
+      <Toaster position='top-right' richColors theme={activeTheme} visibleToasts={5} />
     </div>
   );
 }
