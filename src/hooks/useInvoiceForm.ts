@@ -103,8 +103,9 @@ export const useInvoiceForm = (isInvoiceBeingCreated: boolean) => {
 
   const handleAddInvoiceItem = () => {
     setInvoiceItems((prev) => {
+      prev = [...prev, { name: '', quantity: 0, price: 0, total: 0 }];
       validateInvoiceItems(prev);
-      return [...prev, { name: '', quantity: 0, price: 0, total: 0 }];
+      return prev;
     });
   };
 
